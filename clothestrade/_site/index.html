@@ -26,12 +26,22 @@
 	</div>
 </header>
 			
+<div ng-app ng-controller="CT">
+
+
+{{ test }}
+
+<p ng-bind="test"></p>
+
+
+
 <ul>
 	<li><input type="text">
 		<input type="text">
 	<button>-</button><button>+</button>
 	</li>
 </ul>
+</div>
 
 <footer>
 	<div class="site">
@@ -44,8 +54,6 @@
 			   
 		
         </div> 
-		<!-- replace these with CDN versions in prod -->
-		<script src="/lib/js/jquery.js"></script>
 		<script src="/lib/js/app.js"></script>
     </body>
 </html>
