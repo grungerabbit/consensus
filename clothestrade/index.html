@@ -2,19 +2,31 @@
 layout: default
 title: welcome
 ---
-<div ng-app ng-controller="CT">
+<style>
+.itemize__clothes input {
+	width: 100%;
+	display: block;
+	padding: 0.5em;
+	font: 24px "Helvetica";
+	border: none;
+}
+.clothes__category {
+	padding: 1em;
+}
+.item__edit {
+	background-color: #eee;
+}
+</style>
+
 {% raw %}
+<div ng-app ng-controller="CT">
 
-{{ test }}
-
-<p ng-bind="test"></p>
-
-{% endraw %}
-
-<ul>
-	<li><input type="text">
-		<input type="text">
-	<button>-</button><button>+</button>
-	</li>
-</ul>
+	<ul class="itemize__clothes">
+		<li ng-repeat="item in inventory" class="clothes__category">
+			<input type="text" ng-model="item.type" class="item__edit">
+			<input type="text" ng-model="item.count" class="item__count">
+		<button ng-click="decreaseCount($index)">-</button><button ng-click="increaseCount($index)">+</button>
+		</li>
+	</ul>
 </div>
+{% endraw %}
