@@ -3,39 +3,80 @@ layout: default
 title: welcome
 ---
 <style>
+a:link, a:visited, a:hover, a:active {
+	color: black;
+}
 .itemize__clothes input {
-	width: 100%;
+	float: left;
 	display: block;
-	padding: 0.5em;
+	padding: 1em;
 	font: 24px "Helvetica";
 	border: none;
 }
 .clothes__category {
-	padding: 1em;
+	padding: 5em 0;
 	overflow: auto;
 }
 .item__edit {
 	background-color: #eee;
+	width: 75%;
+}
+.item__count {
+	width: 25%;
+	text-align: right;
 }
 .decrease__count, .increase__count {
 	width: 50%;
 	float: left;
-	padding: 1em;
-	font: 16px "Helvetica";
-	border: none;
+	padding: 0.5em 1em;
+	font: 24px "Helvetica";
+	background: none;
 }
 .decrease__count {
-	background-color: red;
+	border: 30px solid #f25100;
 }
 .increase__count {
-	background-color: blue;
+	border: 30px solid #94e515;
+}
+.decrease__count:focus {
+	background-color: #f25100;
+}
+.increase__count:focus {
+	background-color: #94e515;
 }
 .add__category {
 	padding: 1em;
 	font: 16px "Helvetica";
 	border: none;
 	width: 100%;
-	background-color: green;
+	background-color: #08b9fd;
+}
+.results {
+	padding: 1em;
+	text-align: right;
+}
+.grand__total {
+	border-top: 3px solid black;
+}
+.itemize a {
+	text-decoration: none;
+}
+.jump {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	background-color: rgba(242,196,6,0.9);
+}
+.jump li {
+	display: inline-block;
+}
+.jump li a {
+	color: black;
+	display: block;
+	padding: 0.5em 1em;
+}
+footer {
+	margin-bottom: 15em;
 }
 </style>
 
@@ -53,8 +94,18 @@ title: welcome
 	
 	<div class="results">
 		<h1>Total</h1>
-		<h3 ng-repeat="item in inventory"><a ng-href="#{{item.type}}">{{item.count}} {{item.type}}</a></h3>
-		<h1><span ng-bind="totalItems()"></span> items donated</h1>
+		<h3 ng-repeat="item in inventory" class="itemize"><a ng-href="#{{item.type}}"><small class="result__label">{{item.type}}:</small> {{item.count}}</a></h3>
+		<h1 class="grand__total"><span ng-bind="totalItems()"></span></h1>
+		<h2>items donated</h2>
 	</div>
+	
+	<nav class="jump">
+		<ul>
+			<li ng-repeat="item in inventory">
+				<a ng-href="#{{item.type}}"><small class="result__label">{{item.type}}</small></a>
+			</li>
+			<li>current total: <span ng-bind="totalItems()"></span></li>
+		</ul>
+	</nav>
 </div>
 {% endraw %}
