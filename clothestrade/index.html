@@ -12,9 +12,30 @@ title: welcome
 }
 .clothes__category {
 	padding: 1em;
+	overflow: auto;
 }
 .item__edit {
 	background-color: #eee;
+}
+.decrease__count, .increase__count {
+	width: 50%;
+	float: left;
+	padding: 1em;
+	font: 16px "Helvetica";
+	border: none;
+}
+.decrease__count {
+	background-color: red;
+}
+.increase__count {
+	background-color: blue;
+}
+.add__category {
+	padding: 1em;
+	font: 16px "Helvetica";
+	border: none;
+	width: 100%;
+	background-color: green;
 }
 </style>
 
@@ -22,11 +43,18 @@ title: welcome
 <div ng-app ng-controller="CT">
 
 	<ul class="itemize__clothes">
-		<li ng-repeat="item in inventory" class="clothes__category">
+		<li ng-repeat="item in inventory" class="clothes__category" id="{{item.type}}">
 			<input type="text" ng-model="item.type" class="item__edit">
 			<input type="text" ng-model="item.count" class="item__count">
-		<button ng-click="decreaseCount($index)">-</button><button ng-click="increaseCount($index)">+</button>
+		<button ng-click="decreaseCount($index)" class="decrease__count">- 1</button><button ng-click="increaseCount($index)" class="increase__count">+ 1</button>
 		</li>
 	</ul>
+	<button class="add__category" ng-click="addCategory()">Add Category</button>
+	
+	<div class="results">
+		<h1>Total</h1>
+		<h3 ng-repeat="item in inventory"><a ng-href="#{{item.type}}">{{item.count}} {{item.type}}</a></h3>
+		<h1><span ng-bind="totalItems()"></span> items donated</h1>
+	</div>
 </div>
 {% endraw %}

@@ -67,16 +67,30 @@ function CT($scope) {
 	];
 	
 	$scope.decreaseCount = function(item) {
-		console.log(item)
+		$scope.inventory[item].count--;
 	}
 	
 	$scope.increaseCount = function(item) {
-		console.log(item)
+		$scope.inventory[item].count++;
 	}
 	
+	$scope.totalItems = function() {
+		var total = 0;
+		var items = $scope.inventory;
+		for (var i = 0; i < items.length; i++) {
+			total += items[i].count;
+		}
+		return total;
+	}
 	
+	var Item = function() {
+		this.type = "New Category";
+		this.count = 0;
+	}
 	
-	
+	$scope.addCategory = function() {
+		$scope.inventory.push(new Item());
+	}
 }
 
 
