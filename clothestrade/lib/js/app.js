@@ -1,4 +1,6 @@
-function CT($scope) {
+angular.module('CT', ['ngTouch']).controller("calc", calc);
+
+function calc($scope) {
 	$scope.inventory = [
 		{
 			"type": "Shirts/tops",
@@ -78,9 +80,9 @@ function CT($scope) {
 		var total = 0;
 		var items = $scope.inventory;
 		for (var i = 0; i < items.length; i++) {
-			total += items[i].count;
+			total += parseInt(items[i].count);
 		}
-		return total;
+		return parseInt(total);
 	}
 	
 	var Item = function() {
@@ -92,7 +94,6 @@ function CT($scope) {
 		$scope.inventory.push(new Item());
 	}
 }
-
 
 
 document.addEventListener('DOMContentLoaded', function(){

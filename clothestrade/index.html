@@ -81,12 +81,12 @@ footer {
 </style>
 
 {% raw %}
-<div ng-app ng-controller="CT">
+<div ng-app ng-controller="calc">
 
 	<ul class="itemize__clothes">
-		<li ng-repeat="item in inventory" class="clothes__category" id="{{item.type}}">
-			<input type="text" ng-model="item.type" class="item__edit">
-			<input type="text" ng-model="item.count" class="item__count">
+		<li ng-repeat="item in inventory" class="clothes__category">
+			<input type="text" ng-model="item.type" class="item__edit" id="{{item.type}}">
+			<input  type="number" min="0" inputmode="numeric" pattern="[0-9]*" title="Non-negative integral number" ng-model="item.count" class="item__count">
 		<button ng-click="decreaseCount($index)" class="decrease__count">- 1</button><button ng-click="increaseCount($index)" class="increase__count">+ 1</button>
 		</li>
 	</ul>
