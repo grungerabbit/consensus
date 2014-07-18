@@ -6,43 +6,44 @@ title: welcome
 a:link, a:visited, a:hover, a:active {
 	color: black;
 }
+input {
+    -webkit-appearance: none;
+    border-radius: 0;
+}
 .itemize__clothes input {
 	float: left;
 	display: block;
 	padding: 1em;
 	font: 24px "Helvetica";
-	border: none;
+	box-sizing: border-box;
+}
+.itemize__clothes input:focus {
+	border-color: #444;
 }
 .clothes__category {
-	padding: 5em 0;
+	padding: 1.75em 0 8em;
 	overflow: auto;
-	border-bottom: 1px solid #eee;
 }
 .item__edit {
-	background-color: #eee;
-	width: 75%;
+	border: 10px solid #eee;
+	width: 67%;
 }
 .item__count {
-	width: 25%;
+	width: 33%;
 	text-align: right;
+	border: 10px solid #08b9fd;
 }
 .decrease__count, .increase__count {
 	width: 50%;
 	float: left;
-	padding: 0.5em 1em;
+	padding: 1.5em 2em;
+	border: none;
 	font: 24px "Helvetica";
-	background: none;
 }
 .decrease__count {
-	border: 30px solid #f25100;
-}
-.increase__count {
-	border: 30px solid #94e515;
-}
-.decrease__count:focus {
 	background-color: #f25100;
 }
-.increase__count:focus {
+.increase__count {
 	background-color: #94e515;
 }
 .add__category {
@@ -70,7 +71,7 @@ nav {
 	bottom: 0px;
 	left: 0px;
 	/*background-color: rgba(242,196,6,0.9);*/
-	background-color: rgba(122,122,122,0.9);
+	background-color: rgba(245,245,245,0.95);
 }
 .jump ul {
 	margin-top: 0.5rem;
@@ -81,10 +82,20 @@ nav {
 .jump li a {
 	color: black;
 	display: block;
-	padding: 0.20em 0.60em 0.35em;
-	border: 1px solid rgba(255,255,255,.45);
-	border-radius: 100px;
-	margin: 0.125em;
+	padding: 0.20em 0.50em 0.35em;
+	position: relative;
+	margin: 0.125em 0.125em 0.125em 0.25em;
+}
+.jump li a:before {
+	content: "";
+	width: 0;
+	height: 0;
+	border-bottom: 5px solid transparent;
+	border-top: 5px solid transparent;
+	border-left: 5px solid #08b9fd;
+	position: absolute;
+	margin-left: -0.5rem;
+	margin-top: 0.5rem;
 }
 .last__row {
 	display: block;
@@ -129,9 +140,9 @@ footer {
 <div ng-app ng-controller="calc">
 
 	<ul class="itemize__clothes">
-		<li ng-repeat="item in inventory" class="clothes__category">
+		<li ng-repeat="item in inventory" class="clothes__category" id="{{item.type}}">
 			<input type="text" ng-model="item.type" class="item__edit">
-			<input type="number" min="0" inputmode="numeric" pattern="[0-9]*" title="Non-negative integral number" ng-model="item.count" class="item__count"  id="{{item.type}}">
+			<input type="number" min="0" inputmode="numeric" pattern="[0-9]*" title="Non-negative integral number" ng-model="item.count" class="item__count">
 		<button ng-click="decreaseCount($index)" class="decrease__count">- 1</button><button ng-click="increaseCount($index)" class="increase__count">+ 1</button>
 		</li>
 	</ul>
