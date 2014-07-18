@@ -78,6 +78,13 @@ a:link, a:visited, a:hover, a:active {
 footer {
 	margin-bottom: 15em;
 }
+.toggle__misc {
+	padding: 1em;
+	font: 16px "Helvetica";
+	border: none;
+	width: 100%;
+	background-color: #08b9fd;
+}
 </style>
 
 {% raw %}
@@ -95,16 +102,23 @@ footer {
 	<div class="results">
 		<h1>Total</h1>
 		<h3 ng-repeat="item in inventory" class="itemize"><a ng-href="#{{item.type}}"><small class="result__label">{{item.type}}:</small> {{item.count}}</a></h3>
-		<h1 class="grand__total"><span ng-bind="totalItems()"></span></h1>
+		<h1 class="grand__total" id="total"><span ng-bind="totalItems()"></span></h1>
 		<h2>items donated</h2>
+		
+		<button ng-click="generateItemBreakdown()">mail</button>
 	</div>
 	
 	<nav class="jump">
 		<ul>
-			<li ng-repeat="item in inventory">
+			<li ng-repeat="item in inventory" ng-if="item.misc == false" ng-hide="misc == true">
 				<a ng-href="#{{item.type}}"><small class="result__label">{{item.type}}</small></a>
 			</li>
-			<li>current total: <span ng-bind="totalItems()"></span></li>
+			<li ng-repeat="item in inventory" ng-if="item.misc == true" ng-hide="misc == false">
+				<a ng-href="#{{item.type}}"><small class="result__label">{{item.type}}</small></a>
+			</li>
+			<li class="misc__row"><button ng-click="toggleMisc()" class="toggle__misc">
+				<span ng-show="misc">show main</span><span ng-hide="misc">show miscellaneous</span></button></li>
+			<li><a href="#total">current total: <span ng-bind="totalItems()"></span></a></li>
 		</ul>
 	</nav>
 </div>
