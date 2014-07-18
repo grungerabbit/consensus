@@ -20,7 +20,7 @@ function calc($scope, $window) {
 		{
 			"type": "Vests",
 			"count": 0,
-			"misc": false
+			"misc": true
 		},
 		{
 			"type": "Jackets",
@@ -40,7 +40,7 @@ function calc($scope, $window) {
 		{
 			"type": "Suits",
 			"count": 0,
-			"misc": false
+			"misc": true
 		},
 		{
 			"type": "Dresses",
@@ -135,11 +135,10 @@ function calc($scope, $window) {
 			assembleMailto(items[k])
 		}
 		
-		email.push(stripSpaces("Total: " + $scope.totalItems()));
-		
-		console.log("mailto:test@gmail.com?subject=Clothestrade%202014&body=" + email.join(""))
-		
-		$window.location = "mailto:test@gmail.com?subject=Clothestrade%202014&body=" + email.join("");
+		email.push(stripSpaces("-----"));
+		email.push(stripSpaces("Total: " + $scope.totalItems() + " items donated"));
+
+		$window.location = "mailto:yesiwantthisthing@gmail.com?subject=Clothestrade%202014&body=" + email.join("");
 	}
 }
 
